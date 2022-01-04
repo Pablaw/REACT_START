@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test_Counter</title>
+    <link rel="stylesheet", href="https://unpkg.com/mvp.css" />
+</head>
+<body>
+    <form>
+        <span id="display">Total Clicks: 0</span>
+    </form>
+    <form id="button">
+        <button id="plusBtn">+</button>
+        <button id="minusBtn">-</button>
+        <button id="clear">C</button>
+    </form>
+
+<script>
+const display = document.getElementById("display");
+const plusBtn = document.getElementById("plusBtn");
+const minusBtn = document.getElementById("minusBtn");
+const clearBtn = document.getElementById("clear");
+const btnForm = document.getElementById("button");
+
+let inputValue = 0;
+
+function add (event) {
+   event.preventDefault();
+   inputValue += 1;
+   display.innerText = `Total Clicks: ${inputValue}`;
+}
+
+function subtract (event) {
+    event.preventDefault();
+    if( inputValue > 0 ){
+    inputValue -= 1;
+    display.innerText = `Total Clicks: ${inputValue}`;
+    }
+ }
+
+ function clear(event) {
+    event.preventDefault();
+    inputValue = 0;
+    display.innerText = `Total Clicks: ${inputValue}`;
+ }
+
+plusBtn.addEventListener("click", add);
+minusBtn.addEventListener("click", subtract);
+clearBtn.addEventListener("click", clear);
+</script>
+    
+</body>
+</html>
