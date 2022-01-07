@@ -58,7 +58,11 @@
         function KmToMiles () {
             const [distance, setDistance] = React.useState();
             const [inverted, setInverted] = React.useState(false);
+            const reset = () => {
+                setDistance(0);
+            }
             const onInvert = () => {
+                reset();
                 setInverted((current) => !current);
             }
             const onChange = (event) => {
@@ -72,7 +76,7 @@
                     id="km" 
                     placeholder="km" 
                     type="number"
-                    value={Math.round(distance * 1.60934)} 
+                    value={inverted ? Math.round(distance * 1.60934) : distance}
                     onChange={onChange} 
                     disabled={inverted} />
                 </div>
@@ -82,12 +86,13 @@
                     id="miles" 
                     placeholder="miles" 
                     type="number"
-                    value={distance} 
+                    value={inverted ? distance : Math.round(distance / 1.60934)}
                     onChange={onChange}
                     disabled={!inverted} />
                 </div>
                 <div>
-                    <button onClick={onInvert}>Invert</button>
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={onInvert}>{inverted ? "Turn Back" : "Invert"}</button>
                 </div>
             </div>    
             );
